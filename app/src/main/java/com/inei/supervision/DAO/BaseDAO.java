@@ -14,8 +14,6 @@ public class BaseDAO {
 
     public DBHelper dbHelper;
 
-    public Integer cod_sede_operativa, cod_local_sede;
-
     public String SQL;
     public String Where;
     public String valueString;

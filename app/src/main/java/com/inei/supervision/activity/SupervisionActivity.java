@@ -1,7 +1,6 @@
 package com.inei.supervision.activity;
 
-import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
@@ -12,7 +11,7 @@ import com.inei.supervision.R;
 
 import org.apache.http.util.EncodingUtils;
 
-public class SupervisionActivity extends ActionBarActivity {
+public class SupervisionActivity extends Activity {
     private WebView webViewSupervision;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +37,6 @@ public class SupervisionActivity extends ActionBarActivity {
         webViewSupervision.setWebChromeClient(new WebChromeClient());
         webViewSupervision.getSettings().setJavaScriptEnabled(true);
         webViewSupervision.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-
-
-
     }
 
     @Override

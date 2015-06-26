@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="20dp"
+        android:src="@drawable/user"
+        app:border_width="2dp"
+        android:layout_centerHorizontal="true"
+        app:border_color="@color/white" />
+
+    <TextView
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Documento de identidad asociado: "
+        android:textSize="20sp"
+        android:textColor="@color/ligth_blue"
+        android:layout_below="@+id/profile_image"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/txt_dni_label" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="12345678"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:textColor="@color/primary_material_dark"
+        android:layout_below="@+id/txt_dni_label"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/txt_dni" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sede operativa: "
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:textColor="@color/ligth_blue"
+        android:id="@+id/txt_location_label"
+        android:layout_below="@+id/txt_dni"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Ica"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:textColor="@color/primary_material_dark"
+        android:id="@+id/txt_location"
+        android:layout_below="@+id/txt_location_label"
+        android:layout_centerHorizontal="true" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Ingresar Password"
+        android:layout_below="@+id/txt_location"
+        android:id="@+id/edtxt_password"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
+        android:layout_margin="15dp"
+        />
+
+    <com.gc.materialdesign.views.ButtonRectangle
+        android:id="@+id/btn_login_supervision"
+        android:layout_width="wrap_content"
+        android:padding="15dp"
+        android:layout_height="wrap_content"
+        android:background="#1E88E5"
+        android:text="Iniciar Sesión"
+        android:layout_margin="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/edtxt_password"
+        />
+
+
+</RelativeLayout>

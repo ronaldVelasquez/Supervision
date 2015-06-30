@@ -1,6 +1,7 @@
 package com.inei.supervision.business;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.inei.supervision.DAO.VersionDAO;
@@ -24,7 +25,9 @@ public class VersionBL {
         versionRequest = new VersionRequest(context);
         versionDAO = new VersionDAO(context);
         versionEntity = versionDAO.getVersion();
-        version = this.getVersion(versionRequest.getVersion());
+        String response = versionRequest.getVersion().toString();
+        Log.v("Version", response);
+        version = getVersion(response);
         if(Integer.valueOf(versionEntity.getNro_version()) < Integer.valueOf(version.getNro_version())){
             versionDAO.addVersion(version);
             return true;
@@ -33,9 +36,10 @@ public class VersionBL {
         }
     }
 
-    public VersionEntity getVersion(JSONObject response){
+    public VersionEntity getVersion(String response){
         Gson gson = new Gson();
-        VersionResponse versionResponse = gson.fromJson(response.toString(), VersionResponse.class);
+        Log.v("Version", response);
+        VersionResponse versionResponse = gson.fromJson(response, VersionResponse.class);
         VersionEntity version = versionResponse.getVersion().get(0);
         return version;
     }

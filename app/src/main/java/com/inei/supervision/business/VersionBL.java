@@ -25,7 +25,7 @@ public class VersionBL {
         versionDAO = new VersionDAO(context);
         versionEntity = versionDAO.getVersion();
         version = this.getVersion(versionRequest.getVersion());
-        if(versionEntity.getNro_version() < version.getNro_version()){
+        if(Integer.valueOf(versionEntity.getNro_version()) < Integer.valueOf(version.getNro_version())){
             versionDAO.addVersion(version);
             return true;
         } else {

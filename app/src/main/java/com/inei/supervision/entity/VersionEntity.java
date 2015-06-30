@@ -1,24 +1,24 @@
 package com.inei.supervision.entity;
 
 public class VersionEntity {
-    private int nro_version;
+    private String nro_version;
     private String usuario;
     private String Fecha_Registro;
 
     public VersionEntity() {
     }
 
-    public VersionEntity(int nro_version, String usuario, String fecha_Registro) {
+    public VersionEntity(String nro_version, String usuario, String fecha_Registro) {
         this.nro_version = nro_version;
         this.usuario = usuario;
         Fecha_Registro = fecha_Registro;
     }
 
-    public int getNro_version() {
+    public String getNro_version() {
         return nro_version;
     }
 
-    public void setNro_version(int nro_version) {
+    public void setNro_version(String nro_version) {
         this.nro_version = nro_version;
     }
 

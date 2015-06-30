@@ -35,7 +35,7 @@ public class PadronUbicacionDAO extends BaseDAO{
             Log.v(TAG, "Start addPadron");
             for (PadronUbicacionEntity padron : response){
                 contentValues = new ContentValues();
-                contentValues.put("id_captura", padron.getId_captura());
+                contentValues.put("id_captura", Integer.valueOf(padron.getId_captura()));
                 contentValues.put("fecha_captura", padron.getFecha_captura());
                 dbHelper.getDatabase().insertWithOnConflict("padron", null, contentValues, SQLiteDatabase.CONFLICT_IGNORE);
             }

@@ -33,7 +33,7 @@ public class VersionDAO extends BaseDAO {
             cursor = dbHelper.getDatabase().rawQuery(SQL, null);
             versionEntity = new VersionEntity();
             if(cursor.moveToFirst()){
-                versionEntity.setNro_version(cursor.getInt(cursor.getColumnIndex("nro_version")));
+                versionEntity.setNro_version(cursor.getString(cursor.getColumnIndex("nro_version")));
                 versionEntity.setUsuario(cursor.getString(cursor.getColumnIndex("usuario")));
                 versionEntity.setFecha_Registro(cursor.getString(cursor.getColumnIndex("fecha_registro")));
             } else {
@@ -56,7 +56,7 @@ public class VersionDAO extends BaseDAO {
             openDBHelper();
             Log.v(TAG, "Start addVersion");
             contentValues = new ContentValues();
-            contentValues.put("nro_version", version.getNro_version());
+            contentValues.put("nro_version", Integer.valueOf(version.getNro_version()));
             contentValues.put("usuario", version.getUsuario());
             contentValues.put("fecha_registro", version.getFecha_Registro());
             dbHelper.getDatabase().insertWithOnConflict("version", null, contentValues, SQLiteDatabase.CONFLICT_IGNORE);

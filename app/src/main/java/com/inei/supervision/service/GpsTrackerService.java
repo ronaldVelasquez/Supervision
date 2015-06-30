@@ -45,9 +45,9 @@ public class GpsTrackerService extends Service {
         isGPSEnable = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
         if (!isGPSEnable) {
-            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            Intent intent = new Intent("android.location.GPS_ENABLED_CHANGE");
+            intent.putExtra("enabled", true);
+            sendBroadcast(intent);
         }
     }
 

@@ -25,15 +25,22 @@ public class VersionBL {
         versionRequest = new VersionRequest(context);
         versionDAO = new VersionDAO(context);
         versionEntity = versionDAO.getVersion();
-        String response = versionRequest.getVersion().toString();
-        Log.v("Version", response);
-        version = getVersion(response);
-        if(Integer.valueOf(versionEntity.getNro_version()) < Integer.valueOf(version.getNro_version())){
-            versionDAO.addVersion(version);
-            return true;
-        } else {
+        versionRequest.getVersion();
+
+        if( versionRequest.getJsonObject() != null){
+            Log.e("Version", versionRequest.getJsonObject().toString());
+            version = getVersion( versionRequest.getJsonObject().toString());
+            Log.e("Version", versionEntity.getNro_version() + ", " + version.getNro_version());
+            if(Integer.valueOf(versionEntity.getNro_version()) < Integer.valueOf(version.getNro_version())){
+                versionDAO.addVersion(version);
+                return true;
+            } else {
+                return false;
+            }
+        } else{
             return false;
         }
+
     }
 
     public VersionEntity getVersion(String response){

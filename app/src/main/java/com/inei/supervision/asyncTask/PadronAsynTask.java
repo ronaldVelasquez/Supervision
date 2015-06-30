@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.gc.materialdesign.widgets.ProgressDialog;
 import com.inei.supervision.activity.MainActivity;
 import com.inei.supervision.business.PadronBL;
@@ -33,7 +35,8 @@ public class PadronAsynTask extends AsyncTask {
     protected Object doInBackground(Object[] params) {
         Log.v(TAG, "Start PadronAsync");
         versionBL = new VersionBL(context);
-       if( versionBL.getVersion()){
+        boolean isVersion = versionBL.getVersion();
+        if( isVersion){
            padronBL = new PadronBL(context);
            padronBL.getPadron();
            Intent intent = new Intent(this.context.getApplicationContext(), MainActivity.class);

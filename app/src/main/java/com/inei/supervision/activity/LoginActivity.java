@@ -40,23 +40,23 @@ public class LoginActivity extends Activity{
             @Override
             public void onClick(View v) {
                 String dni = edtxtDni.getText().toString();
-
-                userBL = new UserBL(getApplicationContext());
-                UserEntity user = userBL.getUser(dni);
-                Log.v(TAG, "Username : " + String.valueOf(user != null));
-                if(user != null){
-                    //Get serie number device
-                    TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-                    String serieNumber = telephonyManager.getDeviceId();
-                    //Initial session
-                    sessionManager.createLoginSession(dni, serieNumber);
-                    //startService(new Intent(LoginActivity.this, GpsTrackerService.class));
-                    new PadronAsynTask(LoginActivity.this).execute();
-                } else {
-                    Toast.makeText(LoginActivity.this.getApplicationContext(), "El usuario ingresado es incorrecto", Toast.LENGTH_SHORT).show();
+                if (dni != null) {
+                    userBL = new UserBL(getApplicationContext());
+                    UserEntity user = userBL.getUser(dni);
+                    Log.v(TAG, "Username : " + String.valueOf(user != null));
+                    if (user != null) {
+                        //Get serie number device
+                        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+                        String serieNumber = telephonyManager.getDeviceId();
+                        //Initial session
+                        sessionManager.createLoginSession(dni, serieNumber);
+                        //startService(new Intent(LoginActivity.this, GpsTrackerService.class));
+                        new PadronAsynTask(LoginActivity.this).execute();
+                    } else {
+                        Toast.makeText(LoginActivity.this.getApplicationContext(), "El usuario ingresado es incorrecto", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            }});
     }
 
     public void onBackPressed() {

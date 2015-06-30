@@ -17,11 +17,22 @@ public class VersionRequest {
 
     private static final String TAG = VersionRequest.class.getSimpleName();
     private Context context;
-    private JSONObject jsonObject;
+    private JSONObject jsonObject = null;
+
+    public JSONObject getJsonObject() {
+        return jsonObject;
+    }
+
+    public void setJsonObject(JSONObject jsonObject) {
+        this.jsonObject = jsonObject;
+    }
+
+
 
     public VersionRequest(Context context) {
         this.context = context;
     }
+
     public JSONObject getVersion(){
         RequestQueue queue = Volley.newRequestQueue(context);
         JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.GET, ConstantsUtil.URL_VERSION, new Response.Listener<JSONObject>() {

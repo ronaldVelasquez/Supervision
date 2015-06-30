@@ -56,7 +56,6 @@ public class GpsTrackerService extends Service {
         super.onDestroy();
         Log.v(TAG, "Close service");
         notificationManager.cancelAll();
-
         stopSelf();
     }
 

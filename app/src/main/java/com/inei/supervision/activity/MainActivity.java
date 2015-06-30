@@ -25,7 +25,9 @@ public class MainActivity extends Activity {
         txtSede = (TextView) findViewById(R.id.txt_location);
         btnLoginSupervision = (ButtonRectangle) findViewById(R.id.btn_login_supervision);
 
-        sessionManager.checkLogin();
+        if (sessionManager.checkLogin()){
+            finish();
+        }
 
         HashMap<String, String> user = sessionManager.getUserDetails();
         String dni = user.get(SessionManager.KEY_DNI);

@@ -33,12 +33,16 @@ public class SessionManager {
         editor.commit();
     }
 
-    public void checkLogin(){
+    public boolean checkLogin(){
         if(!this.isLoggedIn()){
             Intent intent = new Intent(context, LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -55,6 +59,7 @@ public class SessionManager {
 
         Intent intent = new Intent(context, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

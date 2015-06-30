@@ -11,9 +11,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.inei.supervision.R;
+import com.inei.supervision.asyncTask.PadronAsynTask;
 import com.inei.supervision.business.UserBL;
 import com.inei.supervision.entity.UserEntity;
 import com.inei.supervision.library.SessionManager;
+import com.inei.supervision.service.GpsTrackerService;
 
 public class LoginActivity extends Activity{
 
@@ -34,7 +36,6 @@ public class LoginActivity extends Activity{
         edtxtDni = (EditText) findViewById(R.id.edtxt_dni);
         btnLogin = (ButtonRectangle) findViewById(R.id.btn_login);
 
-        Toast.makeText(getApplicationContext(), "User Login Status: " + sessionManager.isLoggedIn(), Toast.LENGTH_LONG).show();
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,9 +50,8 @@ public class LoginActivity extends Activity{
                     String serieNumber = telephonyManager.getDeviceId();
                     //Initial session
                     sessionManager.createLoginSession(dni, serieNumber);
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    //startService(new Intent(LoginActivity.this, GpsTrackerService.class));
+                    new PadronAsynTask(LoginActivity.this).execute();
                 } else {
                     Toast.makeText(LoginActivity.this.getApplicationContext(), "El usuario ingresado es incorrecto", Toast.LENGTH_SHORT).show();
                 }
@@ -59,7 +59,6 @@ public class LoginActivity extends Activity{
         });
     }
 
-    @Override
     public void onBackPressed() {
         finish();
     }

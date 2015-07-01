@@ -9,11 +9,9 @@ public class GeoreferenciaEntity {
     private String fecha_registro;
     private String fecha_modificacion;
     private String usuario;
+    private int estado;
 
-    public GeoreferenciaEntity() {
-    }
-
-    public GeoreferenciaEntity(int id_captura, int id, double latitud, double longitud, double altitud, String fecha_registro, String fecha_modificacion, String usuario) {
+    public GeoreferenciaEntity(int id_captura, int id, double latitud, double longitud, double altitud, String fecha_registro, String fecha_modificacion, String usuario, int estado) {
         this.id_captura = id_captura;
         this.id = id;
         this.latitud = latitud;
@@ -22,6 +20,18 @@ public class GeoreferenciaEntity {
         this.fecha_registro = fecha_registro;
         this.fecha_modificacion = fecha_modificacion;
         this.usuario = usuario;
+        this.estado = estado;
+    }
+
+    public GeoreferenciaEntity() {
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     public int getId_captura() {
@@ -87,4 +97,5 @@ public class GeoreferenciaEntity {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+
 }

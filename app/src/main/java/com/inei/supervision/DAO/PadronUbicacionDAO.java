@@ -33,11 +33,13 @@ public class PadronUbicacionDAO extends BaseDAO{
         try{
             openDBHelper();
             Log.v(TAG, "Start addPadron");
-            for (PadronUbicacionEntity padron : response){
+            Log.e(TAG, "Padron: " + String.valueOf(response == null));
+            dbHelper.beginTransaction();
+            for (int i = 0; response.size() > i; i++ ){
                 contentValues = new ContentValues();
-                contentValues.put("id_captura", Integer.valueOf(padron.getId_captura()));
-                contentValues.put("fecha_captura", padron.getFecha_captura());
-                dbHelper.getDatabase().insertWithOnConflict("padron", null, contentValues, SQLiteDatabase.CONFLICT_IGNORE);
+                contentValues.put("id_captura", Integer.valueOf(response.get(i).getId_captura()));
+                contentValues.put("fecha_captura", response.get(i).getFecha_captura());
+                dbHelper.getDatabase().insert("padron_ubicacion", null, contentValues);
             }
             dbHelper.setTransactionSuccessful();
         }catch (Exception ex){
@@ -45,7 +47,6 @@ public class PadronUbicacionDAO extends BaseDAO{
             Log.v(TAG, "Error al escribir el padron");
         } finally {
             Log.v(TAG, "End addPadron");
-            cursor.close();
             closeDBHelper();
         }
     }

@@ -49,9 +49,9 @@ public class LoginActivity extends Activity{
                         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
                         String serieNumber = telephonyManager.getDeviceId();
                         //Initial session
-                        sessionManager.createLoginSession(dni, serieNumber);
+                        //sessionManager.createLoginSession(dni, serieNumber);
                         //startService(new Intent(LoginActivity.this, GpsTrackerService.class));
-                        new PadronAsynTask(LoginActivity.this).execute();
+                        new PadronAsynTask(LoginActivity.this, dni, serieNumber).execute();
                     } else {
                         Toast.makeText(LoginActivity.this.getApplicationContext(), "El usuario ingresado es incorrecto", Toast.LENGTH_SHORT).show();
                     }

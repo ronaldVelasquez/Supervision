@@ -17,38 +17,28 @@ public class VersionRequest {
 
     private static final String TAG = VersionRequest.class.getSimpleName();
     private Context context;
-    private JSONObject jsonObject = null;
-
-    public JSONObject getJsonObject() {
-        return jsonObject;
-    }
-
-    public void setJsonObject(JSONObject jsonObject) {
-        this.jsonObject = jsonObject;
-    }
-
-
+    public static String jsonResponse;
 
     public VersionRequest(Context context) {
         this.context = context;
     }
 
-    public JSONObject getVersion(){
+    public void getVersion(){
         RequestQueue queue = Volley.newRequestQueue(context);
         JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.GET, ConstantsUtil.URL_VERSION, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Log.v(TAG, response.toString());
-                jsonObject = response;
+                VersionRequest.jsonResponse =  response.toString();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Log.v(TAG, volleyError.toString());
-                jsonObject = null;
+                VersionRequest.jsonResponse =  null;
             }
         });
         queue.add(jsonArrayRequest);
-        return jsonObject;
+        Log.v(TAG, "version: " + VersionRequest.jsonResponse);
     }
 }

@@ -2,7 +2,6 @@ package com.inei.supervision.business;
 
 import android.content.Context;
 import android.util.Log;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -15,7 +14,6 @@ import com.inei.supervision.Response.VersionResponse;
 import com.inei.supervision.entity.VersionEntity;
 import com.inei.supervision.request.VersionRequest;
 import com.inei.supervision.utils.ConstantsUtil;
-
 import org.json.JSONObject;
 
 public class VersionBL {

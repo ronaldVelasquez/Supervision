@@ -5,6 +5,7 @@ import com.inei.supervision.entity.GeoreferenciaEntity;
 import java.util.ArrayList;
 
 public class GeoreferenciaResponse {
+
     private ArrayList<GeoreferenciaEntity> data;
 
     public GeoreferenciaResponse(ArrayList<GeoreferenciaEntity> data) {

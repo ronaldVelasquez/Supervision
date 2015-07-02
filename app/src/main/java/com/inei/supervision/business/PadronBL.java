@@ -13,7 +13,6 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.inei.supervision.DAO.PadronUbicacionDAO;
 import com.inei.supervision.Response.PadronResponse;
-import com.inei.supervision.entity.PadronUbicacionEntity;
 import com.inei.supervision.request.PadronRequest;
 import com.inei.supervision.utils.ConstantsUtil;
 

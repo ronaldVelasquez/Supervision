@@ -78,7 +78,7 @@ public class VersionDAO extends BaseDAO {
         }catch (Exception e){
             e.printStackTrace();
             cursor.close();
-            dbHelper.close();
+            closeDBHelper();
         }
     }
 }

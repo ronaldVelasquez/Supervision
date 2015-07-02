@@ -1,9 +1,7 @@
 package com.inei.supervision.DAO;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.util.Log;
-
 import com.inei.supervision.entity.UserEntity;
 
 public class UserDAO extends BaseDAO {
@@ -36,6 +34,7 @@ public class UserDAO extends BaseDAO {
                 userEntity.setUsername(cursor.getString(cursor.getColumnIndex("first_name")));
                 userEntity.setUsername(cursor.getString(cursor.getColumnIndex("last_name")));
                 userEntity.setUsername(cursor.getString(cursor.getColumnIndex("phone")));
+                userEntity.setId(cursor.getInt(cursor.getColumnIndex("id")));
             } else {
                 userEntity = null;
             }

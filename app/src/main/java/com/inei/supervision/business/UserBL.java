@@ -14,7 +14,6 @@ public class UserBL {
     }
 
     public UserEntity getUser(String dni){
-        UserEntity user = userDAO.searchUserByDNI(dni);
-        return user;
+        return userDAO.searchUserByDNI(dni);
     }
 }

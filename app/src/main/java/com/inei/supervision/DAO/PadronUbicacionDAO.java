@@ -33,8 +33,6 @@ public class PadronUbicacionDAO extends BaseDAO{
         try{
             openDBHelper();
             Log.v(TAG, "Start addPadron");
-            Log.e(TAG, "Padron: " + String.valueOf(response == null));
-            dbHelper.beginTransaction();
             for (int i = 0; response.size() > i; i++ ){
                 contentValues = new ContentValues();
                 contentValues.put("id_captura", Integer.valueOf(response.get(i).getId_captura()));

@@ -2,7 +2,6 @@ package com.inei.supervision.activity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -15,7 +14,6 @@ import com.inei.supervision.asyncTask.PadronAsynTask;
 import com.inei.supervision.business.UserBL;
 import com.inei.supervision.entity.UserEntity;
 import com.inei.supervision.library.SessionManager;
-import com.inei.supervision.service.GpsTrackerService;
 
 public class LoginActivity extends Activity{
 
@@ -40,7 +38,7 @@ public class LoginActivity extends Activity{
             @Override
             public void onClick(View v) {
                 String dni = edtxtDni.getText().toString();
-                if (dni != null) {
+                if (dni.isEmpty()) {
                     userBL = new UserBL(getApplicationContext());
                     UserEntity user = userBL.getUser(dni);
                     Log.v(TAG, "Username : " + String.valueOf(user != null));
@@ -51,7 +49,8 @@ public class LoginActivity extends Activity{
                         //Initial session
                         //sessionManager.createLoginSession(dni, serieNumber);
                         //startService(new Intent(LoginActivity.this, GpsTrackerService.class));
-                        new PadronAsynTask(LoginActivity.this, dni, serieNumber).execute();
+                        new PadronAsynTask(LoginActivity.this, dni, serieNumber, user.getId()).execute();
+
                     } else {
                         Toast.makeText(LoginActivity.this.getApplicationContext(), "El usuario ingresado es incorrecto", Toast.LENGTH_SHORT).show();
                     }

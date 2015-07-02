@@ -17,13 +17,10 @@ import com.google.gson.Gson;
 import com.inei.supervision.DAO.PadronUbicacionDAO;
 import com.inei.supervision.DAO.VersionDAO;
 import com.inei.supervision.Response.PadronResponse;
-import com.inei.supervision.activity.LoginActivity;
 import com.inei.supervision.activity.MainActivity;
-import com.inei.supervision.business.PadronBL;
 import com.inei.supervision.business.VersionBL;
 import com.inei.supervision.entity.VersionEntity;
 import com.inei.supervision.library.SessionManager;
-import com.inei.supervision.service.GpsTrackerService;
 import com.inei.supervision.utils.ConstantsUtil;
 
 import org.json.JSONObject;
@@ -38,9 +35,10 @@ public class PadronAsynTask extends AsyncTask {
     private PadronUbicacionDAO padronUbicacionDAO;
     private String dni;
     private String nro_serie;
+    private int id;
     private SessionManager sessionManager;
 
-    public PadronAsynTask(Context context, String dni, String nro_serie) {
+    public PadronAsynTask(Context context, String dni, String nro_serie, int id) {
         super();
         this.context = context;
         versionDAO = VersionDAO.getInstance(context);
@@ -48,6 +46,7 @@ public class PadronAsynTask extends AsyncTask {
         versionBL = new VersionBL(context);
         this.dni = dni;
         this.nro_serie = nro_serie;
+        this.id = id;
     }
 
     @Override
@@ -75,14 +74,13 @@ public class PadronAsynTask extends AsyncTask {
                         @Override
                         public void onResponse(JSONObject response) {
                             sessionManager = new SessionManager(PadronAsynTask.this.context.getApplicationContext());
-                            sessionManager.createLoginSession(dni, nro_serie);
+                            sessionManager.createLoginSession(dni, nro_serie, id);
                             Gson gson = new Gson();
                             PadronResponse padronResponse = gson.fromJson(response.toString(), PadronResponse.class);
                             Log.v(TAG, padronResponse.getPadron_ubicacion().get(0).getFecha_captura());
                             padronUbicacionDAO.addPadron(padronResponse.getPadron_ubicacion());
 
                             Intent intent = new Intent(PadronAsynTask.this.context.getApplicationContext(), MainActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             context.startActivity(intent);
@@ -97,7 +95,7 @@ public class PadronAsynTask extends AsyncTask {
                     queue.add(jsonArrayRequest);
                 } else if(Integer.valueOf(versionEntity.getNro_version()) == Integer.valueOf(versionEntityDAO.getNro_version())){
                     sessionManager = new SessionManager(PadronAsynTask.this.context.getApplicationContext());
-                    sessionManager.createLoginSession(dni, nro_serie);
+                    sessionManager.createLoginSession(dni, nro_serie, id);
                     Intent intent = new Intent(PadronAsynTask.this.context.getApplicationContext(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -40,7 +40,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sede operativa: "
+        android:text="Número de Serie del Equipo: "
         android:textSize="20sp"
         android:layout_margin="10dp"
         android:textColor="@color/ligth_blue"
@@ -78,6 +78,7 @@
         android:layout_height="wrap_content"
         android:background="#1E88E5"
         android:text="Iniciar Sesión"
+        android:textAlignment="center"
         android:layout_margin="15dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/edtxt_password"

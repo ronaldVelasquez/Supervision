@@ -13,8 +13,6 @@ import java.util.ArrayList;
 public class PadronUbicacionDAO extends BaseDAO{
 
     private static final String TAG = PadronUbicacionDAO.class.getSimpleName();
-    private Context context;
-    private PadronUbicacionEntity padronUbicacionEntity;
     private static PadronUbicacionDAO padronUbicacionDAO;
 
     public synchronized static PadronUbicacionDAO getInstance( Context paramContext ) {
@@ -33,6 +31,7 @@ public class PadronUbicacionDAO extends BaseDAO{
         try{
             openDBHelper();
             Log.v(TAG, "Start addPadron");
+            deleteDataPadron();
             for (int i = 0; response.size() > i; i++ ){
                 contentValues = new ContentValues();
                 contentValues.put("id_captura", Integer.valueOf(response.get(i).getId_captura()));
@@ -45,6 +44,16 @@ public class PadronUbicacionDAO extends BaseDAO{
             Log.v(TAG, "Error al escribir el padron");
         } finally {
             Log.v(TAG, "End addPadron");
+            closeDBHelper();
+        }
+    }
+
+    public void deleteDataPadron(){
+        try{
+            dbHelper.getDatabase().delete("padron_ubicacion", null, null);
+        }catch (Exception e){
+            e.printStackTrace();
+            cursor.close();
             closeDBHelper();
         }
     }

@@ -2,6 +2,7 @@ package com.inei.supervision.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -50,6 +51,9 @@ public class LoginActivity extends Activity{
                         //Get serie number device
                         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
                         String serieNumber = telephonyManager.getDeviceId();
+                        if(serieNumber == null){
+                            serieNumber = Build.SERIAL;
+                        }
                         //Initial session
                         //sessionManager.createLoginSession(dni, serieNumber);
                         //startService(new Intent(LoginActivity.this, GpsTrackerService.class));

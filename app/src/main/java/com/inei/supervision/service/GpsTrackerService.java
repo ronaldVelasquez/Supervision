@@ -45,7 +45,7 @@ public class GpsTrackerService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.v(TAG, "Create service");
+        Log.v(TAG, "Create service Gps Tracker and DataSend");
         flag = false;
 
         dataSend = new DataSend();
@@ -158,7 +158,7 @@ public class GpsTrackerService extends Service {
                 try
                 {
                     Log.e(TAG, "Send Data running");
-                    ArrayList<GeoreferenciaEntity>arrayGeoreferencia = new ArrayList<>();
+                    ArrayList<GeoreferenciaEntity>arrayGeoreferencia = new ArrayList<GeoreferenciaEntity>();
                     arrayGeoreferencia = georeferenciaDAO.getData();
                     if(arrayGeoreferencia != null){
                         GeoreferenciaResponse georeferenciaResponse = new GeoreferenciaResponse(arrayGeoreferencia);

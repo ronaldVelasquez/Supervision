@@ -40,7 +40,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sede operativa: "
+        android:text="Número de Serie del Equipo: "
         android:textSize="15sp"
         android:layout_margin="5dp"
         android:textColor="@color/ligth_blue"
@@ -81,6 +81,5 @@
         android:layout_marginRight="15dp"
         android:layout_below="@+id/txt_location"
         android:layout_toEndOf="@+id/profile_image" />
-
 
 </RelativeLayout>

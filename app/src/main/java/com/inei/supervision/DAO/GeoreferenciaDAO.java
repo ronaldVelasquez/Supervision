@@ -68,7 +68,7 @@ public class GeoreferenciaDAO extends BaseDAO {
 
     public ArrayList<GeoreferenciaEntity> getData() {
 
-        ArrayList <GeoreferenciaEntity> arrayGeoreferencia = new ArrayList<>();
+        ArrayList <GeoreferenciaEntity> arrayGeoreferencia = new ArrayList<GeoreferenciaEntity>();
         try{
             openDBHelper();
             Log.v(TAG, "Start getData");

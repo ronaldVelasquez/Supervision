@@ -47,6 +47,7 @@
         android:layout_height="wrap_content"
         android:background="#1E88E5"
         android:text="Iniciar Sesión"
+        android:textAlignment="center"
         android:layout_margin="30dp"
         android:layout_below="@+id/edtxt_dni"
         android:layout_centerHorizontal="true"

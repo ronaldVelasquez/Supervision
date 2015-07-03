@@ -1,7 +1,6 @@
 package com.inei.supervision.activity;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -49,6 +48,25 @@ public class MainActivity extends Activity {
         txtDni.setText(dni);
         txtSede.setText(nroDevice);
         btnLoginSupervision = (ButtonRectangle) findViewById(R.id.btn_login_supervision);
+        btnLoginSupervision.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isConnectedInternet()){
+                    String password = edtxtPassword.getText().toString();
+                    if (password.isEmpty()) {
+                        Toast.makeText(MainActivity.this.getApplicationContext(), "Falta agregar un password para poder acceder al sistema", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intent = new Intent(MainActivity.this, SupervisionActivity.class);
+                        intent.putExtra(SupervisionActivity.USER, dni);
+                        intent.putExtra(SupervisionActivity.PASSWORD, password);
+                        startActivity(intent);
+                    }
+                } else {
+                    Toast.makeText(MainActivity.this.getApplicationContext(), "No hay conexión a internet", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
 
     }
 
@@ -65,34 +83,4 @@ public class MainActivity extends Activity {
         finish();
     }
 
-    class NetworkChangeReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (isConnectedInternet()) {
-                btnLoginSupervision.setEnabled(true);
-                btnLoginSupervision.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String password = edtxtPassword.getText().toString();
-                        if (password.isEmpty()) {
-                            Toast.makeText(MainActivity.this.getApplicationContext(), "Falta agregar un password para poder acceder al sistema", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Intent intent = new Intent(MainActivity.this, SupervisionActivity.class);
-                            intent.putExtra(SupervisionActivity.USER, dni);
-                            intent.putExtra(SupervisionActivity.PASSWORD, password);
-                            startActivity(intent);
-                        }
-                    }
-                });
-            } else {
-                btnLoginSupervision.setEnabled(false);
-                btnLoginSupervision.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(MainActivity.this.getApplicationContext(), "No hay conexión a Internet", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        }
-    }
 }

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
@@ -65,10 +66,12 @@ public class GpsTrackerService extends Service {
         isGPSEnable = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
         if (!isGPSEnable) {
-            Intent intent = new Intent("android.location.GPS_ENABLED_CHANGE");
-            intent.putExtra("enabled", true);
-            sendBroadcast(intent);
-        }
+                final Intent poke = new Intent();
+                poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
+                poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
+                poke.setData(Uri.parse("3"));
+                sendBroadcast(poke);
+         }
     }
 
     @Override
@@ -123,23 +126,7 @@ public class GpsTrackerService extends Service {
                 String dni = String.valueOf(user.get(SessionManager.KEY_DNI));
                 int id = (Integer) user.get(SessionManager.KEY_ID);
                 georeferenciaDAO.addGeoreferencia(latitude, longitude, dni, dateString, id);
-                /*
-                if(flag){
-                    ArrayList<GeoreferenciaEntity>arrayGeoreferencia = georeferenciaDAO.getData();
-                    if(arrayGeoreferencia != null){
-                        GeoreferenciaResponse georeferenciaResponse = new GeoreferenciaResponse(arrayGeoreferencia);
-                        Gson gson = new Gson();
-                        String jsonList = gson.toJson(georeferenciaResponse);
-                        Log.v(TAG, "JSON: " + jsonList);
-                        try{
-                            georefenciaResquest.sendData(jsonList);
-                        } catch (JSONException e){
-                            e.printStackTrace();
-                        }
 
-                    }
-                }
-                */
             }
         }
 

@@ -39,6 +39,10 @@ public class LoginActivity extends Activity{
             public void onClick(View v) {
                 String dni = edtxtDni.getText().toString();
                 if (dni.isEmpty()) {
+                    Toast.makeText(LoginActivity.this.getApplicationContext(), "El usuario ingresado es incorrecto", Toast.LENGTH_SHORT).show();
+                    Log.v(TAG, "Username : no existe en la base de datos");
+
+                    } else {
                     userBL = new UserBL(getApplicationContext());
                     UserEntity user = userBL.getUser(dni);
                     Log.v(TAG, "Username : " + String.valueOf(user != null));
@@ -50,9 +54,6 @@ public class LoginActivity extends Activity{
                         //sessionManager.createLoginSession(dni, serieNumber);
                         //startService(new Intent(LoginActivity.this, GpsTrackerService.class));
                         new PadronAsynTask(LoginActivity.this, dni, serieNumber, user.getId()).execute();
-
-                    } else {
-                        Toast.makeText(LoginActivity.this.getApplicationContext(), "El usuario ingresado es incorrecto", Toast.LENGTH_SHORT).show();
                     }
                 }
             }});

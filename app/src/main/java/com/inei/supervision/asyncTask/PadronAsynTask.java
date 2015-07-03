@@ -52,6 +52,7 @@ public class PadronAsynTask extends AsyncTask {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+
         progressDialog = new ProgressDialog(context, "Obteniendo datos y buscando padrón");
         progressDialog.show();
     }

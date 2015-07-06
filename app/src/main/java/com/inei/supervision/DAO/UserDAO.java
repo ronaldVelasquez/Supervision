@@ -25,7 +25,7 @@ public class UserDAO extends BaseDAO {
     public UserEntity searchUserByDNI(String dni){
         try{
             openDBHelper();
-            SQL = "select * from user where username like " + dni;
+            SQL = "select * from user where username like '" + dni + "'";
             Log.v(TAG, "Start searchUserByDNI");
             cursor = dbHelper.getDatabase().rawQuery(SQL, null);
             userEntity = new UserEntity();

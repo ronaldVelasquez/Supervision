@@ -9,6 +9,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.inei.supervision.R;
+import com.inei.supervision.utils.ConstantsUtil;
 
 import org.apache.http.util.EncodingUtils;
 
@@ -28,7 +29,7 @@ public class SupervisionActivity extends Activity {
 
         webViewSupervision = (WebView) findViewById(R.id.webview_supervision);
         String postData = "identity=" + user + "&password=" + password;
-        webViewSupervision.postUrl("http://172.16.100.61/supervision/index.php/auth/login", EncodingUtils.getBytes(postData, "BASE64"));
+        webViewSupervision.postUrl("http://192.95.3.149:90/supervision/index.php/auth/login", EncodingUtils.getBytes(postData, "BASE64"));
         webViewSupervision.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
